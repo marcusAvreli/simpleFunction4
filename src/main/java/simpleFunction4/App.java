@@ -37,15 +37,20 @@ public class App
         JSONObject jsonObject = new JSONObject();
        jsonObject.put("test", "testValue");
        System.out.println("doUnauthorizedUrlEncodedPostForJsonObject");
-       CompletableFuture<JSONObject> future = new CompletableFuture<JSONObject>();
-       future = CompletableFuture.supplyAsync(new Supplier<JSONObject>() {
-    	   public JSONObject get() {
-    		   JSONObject jsonObject = new JSONObject();
-    		   jsonObject.put("test", "testValue");
-    		   return jsonObject;
-    	   }
-       });
-       return future;
+      
+     
+       return doJsonResponseRequest();
+    }
+    private  <T> CompletableFuture<JSONObject> doJsonResponseRequest() {
+    	 CompletableFuture<JSONObject> future = new CompletableFuture<JSONObject>();
+         future = CompletableFuture.supplyAsync(new Supplier<JSONObject>() {
+      	   public JSONObject get() {
+      		   JSONObject jsonObject = new JSONObject();
+      		   jsonObject.put("test", "testValue");
+      		   return jsonObject;
+      	   }
+         });
+         return future;
     }
     public static void main(String... args){
 	        
